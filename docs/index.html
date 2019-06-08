@@ -25,20 +25,35 @@
 
 </head>
 
-<body onload="getLocation();">
+<body onload="start();">
     
     <div id="mapid"></div>
     <div id="debug"></div>
     
     <script>
 
-				var mymap = new L.Map('mapid');
-                //var latlng;
-				//var marker;
-
+		var mymap = new L.Map('mapid');
 		var marker;
+		var ign;
 
-        function getLocation() {
+
+
+
+		//var pois = new Array();
+
+		var poi1 = new L.LatLng(47.5839578, 12.1733215); //FH
+		var poi2 = new L.LatLng(47.583422, 12.170462); //Theater
+
+		var fm1, fm2, fm3, fm4, fm5;
+
+
+		//pois.push(poi1);
+		//pois.push(poi2);
+
+
+
+
+        function start() {
                 // Check whether browser supports Geolocation API or not
                 if (navigator.geolocation) { // Supported
 
@@ -58,36 +73,56 @@
             }
 
 
-            function getPosition(position) {
-                
+        function getPosition(position) {
+
+				//FIXED MARKER ICON
+				var greenIcon = L.icon({
+					iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg',
+					iconSize:     [20, 20], // size of the icon
+				});
+
+               
                 //var mymap = new L.Map('mapid');
                 var latlng = new L.LatLng(position.coords.latitude, position.coords.longitude);
+
+				//console.log(typeof position.coords.latitude);
+
                 mymap.setZoom(11);
                 mymap.setView(latlng, 18);
 
-                var ign = new L.tileLayer("https://{s}.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg", {
+                ign = new L.tileLayer("https://{s}.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg", {
                     subdomains: ['maps', 'maps1', 'maps2', 'maps3', 'maps4'],
                     attribution: '&copy; <a href="http://basemap.at">Basemap.at</a>,Claudio, Helene, Michael, Sascha',
                     maxNativeZoom: 19,
                     maxZoom: 18
                 });
 
+				//DYN MARKER
                 mymap.addLayer(ign);
 
-                marker = L.marker(latlng).addTo(mymap);
-            }
+
+				//FIXED MARKER
+				fm1 = L.marker(poi2, {icon: greenIcon}).addTo(mymap);
+				fm2 = L.marker(poi2, {icon: greenIcon}).addTo(mymap);
 
 
-			//TEST
-			function updateMarker(position){
-				var lat = position.coords.latitude;
-				var lng = position.coords.longitude;
-				marker.setLatLng([lat, lng]).update(); 
-			}
+                marker = L.marker(latlng).addTo(mymap);//set default marker
+        }
 
 
 
-            function catchError(positionError) {
+
+
+		//TEST
+		function updateMarker(position){
+			var lat = position.coords.latitude;
+			var lng = position.coords.longitude;
+			marker.setLatLng([lat, lng]).update(); 
+		}
+
+
+
+        function catchError(positionError) {
                 switch (positionError.code) {
                     case positionError.TIMEOUT:
                         alert("The request to get user location has aborted as it has taken too long.");
@@ -101,17 +136,13 @@
                     default:
                         alert("An unknown error occurred.");
                 }
-            }
+        }
 
 
 
 	//Listener
 	var watchID = navigator.geolocation.watchPosition(function(position) {
-		//do_something(position.coords.latitude, position.coords.longitude);
-		//alert("changed!");
-		//getPosition(position);
 		updateMarker(position);
-		//add_map_point(position.coords.latitude, position.coords.longitude);
 	});
 
 
