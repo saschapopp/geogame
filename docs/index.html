@@ -125,6 +125,15 @@
 
 
 
+	//Listener
+	var watchID = navigator.geolocation.watchPosition(function(position) {
+		//do_something(position.coords.latitude, position.coords.longitude);
+		//alert("changed!");
+		getPosition(position);
+		//add_map_point(position.coords.latitude, position.coords.longitude);
+	});
+
+
     </script>
 
 </body>
