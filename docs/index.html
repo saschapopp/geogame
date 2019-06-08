@@ -41,21 +41,32 @@
 		var ign;
 
 
-
-
-		//var pois = new Array();
-
 		var poi1 = new L.LatLng(47.5839578, 12.1733215); //FH
 		var poi2 = new L.LatLng(47.583422, 12.170462); //Theater
 		var poi3 = new L.LatLng(47.583869, 12.173359); //FH EINGANG
 		var poi4 = new L.LatLng(47.583691, 12.173780); //	 FH Rückseite
 		var poi5 = new L.LatLng(47.584268, 12.171596); // Kreisverkehr
 
+
+
+
+		var pois = [pos1, pos2, pos3, pos4, pos5];
+		/*
+		let items = [
+		  [pos1, fm1],
+		  [pos2, fm2],
+		  [pos3, fm3],
+		  [pos2, fm2],
+		  [5, "FR", "bonjour"]
+		];
+		console.log (items);*/
 		 
 	
- 
+		var arr = [];
 
 		var fm1, fm2, fm3, fm4, fm5;
+		//var arr = [fm1, fm2, fm3, fm4, fm5];
+		
 
 
 		//pois.push(poi1);
@@ -92,6 +103,12 @@
 					iconSize:     [20, 20], // size of the icon
 				});
 
+				//FIXED MARKER ICON
+				var greenIcon = L.icon({
+					iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Green_dot.svg',
+					iconSize:     [20, 20], // size of the icon
+				});
+
                
                 //var mymap = new L.Map('mapid');
                 var latlng = new L.LatLng(position.coords.latitude, position.coords.longitude);
@@ -112,9 +129,11 @@
                 mymap.addLayer(ign);
 
                 //befüllt map mit 5 rnd marker
-                for (let index = 0; index < 5; index++) {
-                    L.marker(rndPos(), {icon: greenIcon}).addTo(mymap);                    
-                }
+                /*for (let index = 0; index < 5; index++) {
+                    L.marker(rndPos(), {icon: redIcon}).addTo(mymap);                    
+                }*/
+
+
 				//FIXED MARKER
 
 				fm1 = L.marker(poi1, {icon: redIcon}).addTo(mymap);
@@ -122,6 +141,12 @@
 				fm3 = L.marker(poi3, {icon: redIcon}).addTo(mymap);
 				fm4 = L.marker(poi4, {icon: redIcon}).addTo(mymap);
 				fm5 = L.marker(poi5, {icon: redIcon}).addTo(mymap);
+
+				/*pois.forEach(element => {
+					arr.push(element);
+				})
+				alert(arr[0].getLatLng());*/
+				
 
 
                 marker = L.marker(latlng).addTo(mymap);//set default marker
