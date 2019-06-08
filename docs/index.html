@@ -43,6 +43,19 @@
 
 		var markers = new Array();
 
+				//FIXED MARKER ICON
+				var redIcon = L.icon({
+					iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg',
+					iconSize:     [20, 20], // size of the icon
+				});
+
+				//FIXED MARKER ICON
+				var greenIcon = L.icon({
+					iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Green_dot.svg',
+					iconSize:     [20, 20], // size of the icon
+				});
+
+
 
         function start() {
                 // Check whether browser supports Geolocation API or not
@@ -65,18 +78,6 @@
 
 
         function getPosition(position) {
-
-				//FIXED MARKER ICON
-				var redIcon = L.icon({
-					iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg',
-					iconSize:     [20, 20], // size of the icon
-				});
-
-				//FIXED MARKER ICON
-				var greenIcon = L.icon({
-					iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Green_dot.svg',
-					iconSize:     [20, 20], // size of the icon
-				});
 
                
                 //var mymap = new L.Map('mapid');
@@ -130,21 +131,24 @@
 			var lng = position.coords.longitude;
 			marker.setLatLng([lat, lng]).update();
 
-			//var dis = L.GeometryUtil.length([position, poi1]);
-			//var dis = L.GeometryUtil.distance(mymap, position, poi1);
 
 			var cpos = new L.LatLng(position.coords.latitude, position.coords.longitude);
 
 
 			for(var x=0;x<markers.length;x++) {
+
+				markers[x].bindPopup("Distanz "+Math.floor(cpos.distanceTo(markers[x].getLatLng()))+" Meter");
+
 				if(cpos.distanceTo(markers[x].getLatLng()) <=3){
-					alert("GLEICH DA");
+					markers[x].setIcon(greenIcon);
+					
+
+					//alert("GLEICH DA, DISTANZ "+cpos.distanceTo(markers[x].getLatLng())+" METER");
 				}
 			}
 
 			
 			document.getElementById('poi1').innerHTML = cpos.distanceTo(markers[0].getLatLng());
-			//alert(marker.distanceTo(poi1));
 		}
 
 
