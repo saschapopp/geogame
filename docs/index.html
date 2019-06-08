@@ -102,14 +102,27 @@
 
 
 				//FIXED MARKER
-				fm1 = L.marker(poi2, {icon: greenIcon}).addTo(mymap);
+				fm1 = L.marker(poi1, {icon: greenIcon}).addTo(mymap);
 				fm2 = L.marker(poi2, {icon: greenIcon}).addTo(mymap);
-
-
+                fm3 = L.marker(rndPos(), {icon: greenIcon}).addTo(mymap);
+                fm4 = L.marker(rndPos(), {icon: greenIcon}).addTo(mymap);
+                fm5 = L.marker(rndPos(), {icon: greenIcon}).addTo(mymap);
+                console.log(rndPos());
                 marker = L.marker(latlng).addTo(mymap);//set default marker
         }
 
+        function rndPos() {
+            var bounds = mymap.getBounds(),
+				southWest = bounds.getSouthWest(),
+				northEast = bounds.getNorthEast(),
+				lngSpan = northEast.lng - southWest.lng,
+				latSpan = northEast.lat - southWest.lat;
 
+			return new L.LatLng(
+					southWest.lat + latSpan * Math.random(),
+					southWest.lng + lngSpan * Math.random());
+
+        }
 
 
 
