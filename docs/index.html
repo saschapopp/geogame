@@ -21,12 +21,16 @@
 
     <script src="js/leaflet.js"></script>
     <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
+
+	    <script src="https://npmcdn.com/leaflet-geometryutil"></script>
     
 
 </head>
 
 <body onload="start();">
     
+	<div id="poi1">ENTFERNUNG ZU POI1</div>
+	<br>
     <div id="mapid"></div>
     <div id="debug"></div>
     
@@ -43,6 +47,13 @@
 
 		var poi1 = new L.LatLng(47.5839578, 12.1733215); //FH
 		var poi2 = new L.LatLng(47.583422, 12.170462); //Theater
+		var poi3 = new L.LatLng(47.583869, 12.173359); //FH EINGANG
+		var poi4 = new L.LatLng(47.583691, 12.173780); //	 FH Rückseite
+		var poi5 = new L.LatLng(47.584268, 12.171596); // Kreisverkehr
+
+		 
+	
+ 
 
 		var fm1, fm2, fm3, fm4, fm5;
 
@@ -76,7 +87,7 @@
         function getPosition(position) {
 
 				//FIXED MARKER ICON
-				var greenIcon = L.icon({
+				var redIcon = L.icon({
 					iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg',
 					iconSize:     [20, 20], // size of the icon
 				});
@@ -87,8 +98,8 @@
 
 				//console.log(typeof position.coords.latitude);
 
-                mymap.setZoom(11);
-                mymap.setView(latlng, 18);
+                mymap.setZoom(10);
+                mymap.setView(latlng, 17);
 
                 ign = new L.tileLayer("https://{s}.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg", {
                     subdomains: ['maps', 'maps1', 'maps2', 'maps3', 'maps4'],
@@ -102,9 +113,11 @@
 
 
 				//FIXED MARKER
-				fm1 = L.marker(poi2, {icon: greenIcon}).addTo(mymap);
-				fm2 = L.marker(poi2, {icon: greenIcon}).addTo(mymap);
-
+				fm1 = L.marker(poi1, {icon: redIcon}).addTo(mymap);
+				fm2 = L.marker(poi2, {icon: redIcon}).addTo(mymap);
+				fm3 = L.marker(poi3, {icon: redIcon}).addTo(mymap);
+				fm4 = L.marker(poi4, {icon: redIcon}).addTo(mymap);
+				fm5 = L.marker(poi5, {icon: redIcon}).addTo(mymap);
 
                 marker = L.marker(latlng).addTo(mymap);//set default marker
         }
@@ -117,7 +130,14 @@
 		function updateMarker(position){
 			var lat = position.coords.latitude;
 			var lng = position.coords.longitude;
-			marker.setLatLng([lat, lng]).update(); 
+			marker.setLatLng([lat, lng]).update();
+
+			//var dis = L.GeometryUtil.length([position, poi1]);
+			//var dis = L.GeometryUtil.distance(mymap, position, poi1);
+
+			var pos = new L.LatLng(position.coords.latitude, position.coords.longitude);
+			document.getElementById('poi1').innerHTML = pos.distanceTo(poi1);
+			//alert(marker.distanceTo(poi1));
 		}
 
 
@@ -147,6 +167,7 @@
 
 
     </script>
+
 
 </body>
 
