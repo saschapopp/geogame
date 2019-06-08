@@ -32,7 +32,7 @@
     
     <script>
 
-				//var mymap = new L.Map('mapid');
+				var mymap = new L.Map('mapid');
                 //var latlng;
 				//var marker;
 
@@ -60,7 +60,7 @@
 
             function getPosition(position) {
                 
-                var mymap = new L.Map('mapid');
+                //var mymap = new L.Map('mapid');
                 var latlng = new L.LatLng(position.coords.latitude, position.coords.longitude);
                 mymap.setZoom(11);
                 mymap.setView(latlng, 18);
