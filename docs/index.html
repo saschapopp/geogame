@@ -33,8 +33,8 @@
     <script>
 
 				//var mymap = new L.Map('mapid');
-                var latlng;
-				var marker;
+                //var latlng;
+				//var marker;
 
         function getLocation() {
                 // Check whether browser supports Geolocation API or not
@@ -59,7 +59,7 @@
             function getPosition(position) {
                 
                 var mymap = new L.Map('mapid');
-                latlng = new L.LatLng(position.coords.latitude, position.coords.longitude);
+                var latlng = new L.LatLng(position.coords.latitude, position.coords.longitude);
                 mymap.setZoom(11);
                 mymap.setView(latlng, 18);
 
@@ -71,7 +71,7 @@
                 });
 
                 mymap.addLayer(ign);
-                marker = L.marker(latlng).addTo(mymap);
+                var marker = L.marker(latlng).addTo(mymap);
             }
 
             function catchError(positionError) {
