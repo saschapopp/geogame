@@ -78,6 +78,15 @@
                 marker = L.marker(latlng).addTo(mymap);
             }
 
+
+			//TEST
+			function updateMarker(){
+				var latlng = new L.LatLng(position.coords.latitude, position.coords.longitude);
+				marker = L.marker(latlng).addTo(mymap);
+			}
+
+
+
             function catchError(positionError) {
                 switch (positionError.code) {
                     case positionError.TIMEOUT:
@@ -100,7 +109,8 @@
 	var watchID = navigator.geolocation.watchPosition(function(position) {
 		//do_something(position.coords.latitude, position.coords.longitude);
 		//alert("changed!");
-		getPosition(position);
+		//getPosition(position);
+		updateMarker();
 		//add_map_point(position.coords.latitude, position.coords.longitude);
 	});
 
