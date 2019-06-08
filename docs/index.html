@@ -41,38 +41,7 @@
 		var ign;
 
 
-		var poi1 = new L.LatLng(47.5839578, 12.1733215); //FH
-		var poi2 = new L.LatLng(47.583422, 12.170462); //Theater
-		var poi3 = new L.LatLng(47.583869, 12.173359); //FH EINGANG
-		var poi4 = new L.LatLng(47.583691, 12.173780); //	 FH Rückseite
-		var poi5 = new L.LatLng(47.584268, 12.171596); // Kreisverkehr
-
-
-
-
-		var pois = [pos1, pos2, pos3, pos4, pos5];
-		/*
-		let items = [
-		  [pos1, fm1],
-		  [pos2, fm2],
-		  [pos3, fm3],
-		  [pos2, fm2],
-		  [5, "FR", "bonjour"]
-		];
-		console.log (items);*/
-		 
-	
-		var arr = [];
-
-		var fm1, fm2, fm3, fm4, fm5;
-		//var arr = [fm1, fm2, fm3, fm4, fm5];
-		
-
-
-		//pois.push(poi1);
-		//pois.push(poi2);
-
-
+		var markers = new Array();
 
 
         function start() {
@@ -128,26 +97,14 @@
 				//DYN MARKER
                 mymap.addLayer(ign);
 
-                //befüllt map mit 5 rnd marker
-                /*for (let index = 0; index < 5; index++) {
-                    L.marker(rndPos(), {icon: redIcon}).addTo(mymap);                    
-                }*/
 
 
 				//FIXED MARKER
-
-				fm1 = L.marker(poi1, {icon: redIcon}).addTo(mymap);
-				fm2 = L.marker(poi2, {icon: redIcon}).addTo(mymap);
-				fm3 = L.marker(poi3, {icon: redIcon}).addTo(mymap);
-				fm4 = L.marker(poi4, {icon: redIcon}).addTo(mymap);
-				fm5 = L.marker(poi5, {icon: redIcon}).addTo(mymap);
-
-				/*pois.forEach(element => {
-					arr.push(element);
-				})
-				alert(arr[0].getLatLng());*/
-				
-
+				markers.push(L.marker(new L.LatLng(47.5839578, 12.1733215), {icon: redIcon}).addTo(mymap));
+				markers.push(L.marker(new L.LatLng(47.583422, 12.170462), {icon: redIcon}).addTo(mymap));
+				markers.push(L.marker(new L.LatLng(47.583869, 12.173359), {icon: redIcon}).addTo(mymap));
+				markers.push(L.marker(new L.LatLng(47.583691, 12.173780), {icon: redIcon}).addTo(mymap));
+				markers.push(L.marker(new L.LatLng(47.584268, 12.171596), {icon: redIcon}).addTo(mymap));
 
                 marker = L.marker(latlng).addTo(mymap);//set default marker
         }
@@ -176,8 +133,17 @@
 			//var dis = L.GeometryUtil.length([position, poi1]);
 			//var dis = L.GeometryUtil.distance(mymap, position, poi1);
 
-			var pos = new L.LatLng(position.coords.latitude, position.coords.longitude);
-			document.getElementById('poi1').innerHTML = pos.distanceTo(poi1);
+			var cpos = new L.LatLng(position.coords.latitude, position.coords.longitude);
+
+
+			for(var x=0;x<markers.length;x++) {
+				if(cpos.distanceTo(markers[x].getLatLng()) <=3){
+					alert("GLEICH DA");
+				}
+			}
+
+			
+			document.getElementById('poi1').innerHTML = cpos.distanceTo(markers[0].getLatLng());
 			//alert(marker.distanceTo(poi1));
 		}
 
