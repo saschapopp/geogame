@@ -50,6 +50,8 @@
                     alert("Oops! This browser does not support HTML Geolocation.");
                 }
             }
+
+
             function getPosition(position) {
                 
                 var mymap = new L.Map('mapid');
@@ -89,8 +91,8 @@
 	//Listener
 	var watchID = navigator.geolocation.watchPosition(function(position) {
 		//do_something(position.coords.latitude, position.coords.longitude);
-		alert("changed!");
-		//getPosition(position);
+		//alert("changed!");
+		getPosition(position);
 		//add_map_point(position.coords.latitude, position.coords.longitude);
 	});
 
