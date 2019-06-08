@@ -74,15 +74,15 @@
 
                 mymap.addLayer(ign);
 
-
                 marker = L.marker(latlng).addTo(mymap);
             }
 
 
 			//TEST
-			function updateMarker(){
-				var latlng = new L.LatLng(position.coords.latitude, position.coords.longitude);
-				marker = L.marker(latlng).addTo(mymap);
+			function updateMarker(position){
+				var lat = position.coords.latitude;
+				var lng = position.coords.longitude;
+				marker.setLatLng([lat, lng]).update(); 
 			}
 
 
@@ -110,7 +110,7 @@
 		//do_something(position.coords.latitude, position.coords.longitude);
 		//alert("changed!");
 		//getPosition(position);
-		updateMarker();
+		updateMarker(position);
 		//add_map_point(position.coords.latitude, position.coords.longitude);
 	});
 
