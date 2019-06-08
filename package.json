@@ -1,0 +1,26 @@
+{
+  "name": "leafletpt",
+  "version": "1.0.0",
+  "description": "Leaflet Prototype",
+  "main": "index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "browser-sync start --server ./docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmaurhart/leafletpt.git"
+  },
+  "author": "Thomas Maurhart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tmaurhart/leafletpt/issues"
+  },
+  "homepage": "https://github.com/tmaurhart/leafletpt#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.26.5"
+  }
+}
