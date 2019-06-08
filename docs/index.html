@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Leaflet - Prototype</title>
-    <meta name="author" content="Sascha Popp, Thomas Maurhart">
+    <title>Geo Game</title>
+    <meta name="author" content="Michael Föger, Sascha Popp, Claudio Scheiber, Helene Wechselberger">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -31,45 +31,6 @@
     <div id="debug"></div>
     
     <script>
-        
-
-        /*Geolocation.watchPosition().subscribe((position) => {
-                this.x = position.coords.longitude;
-                this.y = position.coords.latitude;*/
-
-        //navigator.geolocation.getCurrentPosition(function (location) {
-        
-        /*    navigator.geolocation.watchPosition(function (location) {
-            var mymap = new L.Map('mapid');
-            mymap.setZoom(11);
-            var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-
-            var positionOptions = {
-                timeout: Infinity,
-                maximumAge: 0,
-                enableHighAccuracy: true
-            }
-
-            //var mymap = L.map('mapid').setView(latlng, 13);
-            mymap.setView(latlng, 18);
-
-            
-
-
-
-            var ign = new L.tileLayer("https://{s}.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg", {
-                subdomains: ['maps', 'maps1', 'maps2', 'maps3', 'maps4'],
-                attribution: '&copy; <a href="http://basemap.at">Basemap.at</a>, Sascha & Tom',
-                maxNativeZoom: 19,
-                maxZoom: 18
-            });
-
-            mymap.addLayer(ign);
-
-            var marker = L.marker(latlng).addTo(mymap);
-        }, positionOptions);
-
-*/
 
         function getLocation() {
                 // Check whether browser supports Geolocation API or not
@@ -98,7 +59,7 @@
 
                 var ign = new L.tileLayer("https://{s}.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg", {
                     subdomains: ['maps', 'maps1', 'maps2', 'maps3', 'maps4'],
-                    attribution: '&copy; <a href="http://basemap.at">Basemap.at</a>, Sascha & Tom',
+                    attribution: '&copy; <a href="http://basemap.at">Basemap.at</a>,Claudio, Helene, Michael, Sascha',
                     maxNativeZoom: 19,
                     maxZoom: 18
                 });
