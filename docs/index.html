@@ -36,6 +36,8 @@
                 //var latlng;
 				//var marker;
 
+		var marker;
+
         function getLocation() {
                 // Check whether browser supports Geolocation API or not
                 if (navigator.geolocation) { // Supported
@@ -71,7 +73,9 @@
                 });
 
                 mymap.addLayer(ign);
-                var marker = L.marker(latlng).addTo(mymap);
+
+
+                marker = L.marker(latlng).addTo(mymap);
             }
 
             function catchError(positionError) {
