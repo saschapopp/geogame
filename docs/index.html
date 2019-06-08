@@ -111,18 +111,34 @@
 				//DYN MARKER
                 mymap.addLayer(ign);
 
-
+                //befüllt map mit 5 rnd marker
+                for (let index = 0; index < 5; index++) {
+                    L.marker(rndPos(), {icon: greenIcon}).addTo(mymap);                    
+                }
 				//FIXED MARKER
+
 				fm1 = L.marker(poi1, {icon: redIcon}).addTo(mymap);
 				fm2 = L.marker(poi2, {icon: redIcon}).addTo(mymap);
 				fm3 = L.marker(poi3, {icon: redIcon}).addTo(mymap);
 				fm4 = L.marker(poi4, {icon: redIcon}).addTo(mymap);
 				fm5 = L.marker(poi5, {icon: redIcon}).addTo(mymap);
 
+
                 marker = L.marker(latlng).addTo(mymap);//set default marker
         }
 
+        function rndPos() {
+            var bounds = mymap.getBounds(),
+				southWest = bounds.getSouthWest(),
+				northEast = bounds.getNorthEast(),
+				lngSpan = northEast.lng - southWest.lng,
+				latSpan = northEast.lat - southWest.lat;
 
+			return new L.LatLng(
+					southWest.lat + latSpan * Math.random(),
+					southWest.lng + lngSpan * Math.random());
+
+        }
 
 
 
