@@ -1,13 +1,13 @@
 {
-    "name": "Leaflet PT",
-    "short_name": "Leaflet PT",
+    "name": "Geogame",
+    "short_name": "Geogame",
     "display": "standalone",
-    "scope": "/leafletpt/",
-    "start_url": "/leafletpt/",
+    "scope": "/geogame/",
+    "start_url": "/geogame/",
     "orientation": "portrait",
     "background_color": "#2b3e51",
     "theme_color": "#2b3e51",
-    "description": "Leaflet Prototype",
+    "description": "Geogame",
     "icons": [
         {
             "src": "icons/icon512.png",
