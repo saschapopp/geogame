@@ -99,13 +99,21 @@
                 mymap.addLayer(ign);
 
 
+                for (let index = 0; index < 5; index++) {
+                    markers.push(L.marker(rndPos(), {icon: redIcon}).addTo(mymap));
+                    
+                }
 
+                /*
 				//FIXED MARKER
 				markers.push(L.marker(new L.LatLng(47.5839578, 12.1733215), {icon: redIcon}).addTo(mymap));
 				markers.push(L.marker(new L.LatLng(47.583422, 12.170462), {icon: redIcon}).addTo(mymap));
 				markers.push(L.marker(new L.LatLng(47.583869, 12.173359), {icon: redIcon}).addTo(mymap));
 				markers.push(L.marker(new L.LatLng(47.583691, 12.173780), {icon: redIcon}).addTo(mymap));
 				markers.push(L.marker(new L.LatLng(47.584268, 12.171596), {icon: redIcon}).addTo(mymap));
+                */
+
+
 
                 marker = L.marker(latlng).addTo(mymap);//set default marker
         }
